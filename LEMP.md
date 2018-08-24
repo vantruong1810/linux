@@ -34,7 +34,11 @@ add-apt-repository ppa:ondrej/php
 apt-get install software-properties-common
 apt-get install python-software-properties -y
 apt-get update
-apt-get -y install php7.2 php7.2-mysql php7.2-fpm php7.2-mbstring php7.2-xml php7.2-curl
+apt-get -y install php7.2 php7.2-mysql php7.2-fpm
+```
+### PHP package optional
+```bash
+apt-get -y install php7.2-mbstring php7.2-xml php7.2-curl php7.0-soap php7.2-common php7.2-cli
 ```
 ### Config PHP
 ```bash
