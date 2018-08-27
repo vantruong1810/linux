@@ -5,7 +5,7 @@ Link reference:
 - EN: https://devhub.io/repos/pantsel-konga
 
 # Prerequisites
-- A running Kong installation
+- A running Kong installation [here](https://github.com/vantruong1810/linux/blob/master/kong.md "Kong installation")
 - Nodejs >= 8 (8.11.3 LTS is recommended)
 - Npm
 - bower, gulp
