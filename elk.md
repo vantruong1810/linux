@@ -112,7 +112,7 @@ sudo systemctl enable kibana.service
 sudo systemctl start kibana.service
 ```
 ## 5. Install and configure Logstash
-### Install Java 8 on another server [Here](https://github.com/vantruong1810/linux/blob/master/elk.md#install-java-8 "Install Java 8) [Optional]
+### Install Java 8 on another server [Here](https://github.com/vantruong1810/linux/blob/master/elk.md#install-java-8 "Install Java 8") [Optional]
 ### Intstall Logstash on another server [Optional]
 Add the elastic.co key to the server.
 ```
@@ -143,7 +143,7 @@ sudo openssl req -config /etc/pki/tls/openssl.cnf -x509 -days 3650 -batch -nodes
 ```
 The certificate files can be found in the `/etc/pki/tls/certs/` and `/etc/pki/tls/private/` directories.
 ### Create logstash configuration files
-~Filebeat~
+_Filebeat_
 ```bash
 cd /etc/logstash/
 sudo vim conf.d/filebeat-input.conf
@@ -159,7 +159,7 @@ input {
   }
 }
 ```
-~Syslog~
+_Syslog_
 ```bash
 cd /etc/logstash/
 sudo vim conf.d/syslog-filter.conf
@@ -180,7 +180,7 @@ filter {
 }
 ```
 
-~Output elasticsearch~
+_Output elasticsearch_
 ```bash
 cd /etc/logstash/
 sudo vim conf.d/output-elasticsearch.conf
