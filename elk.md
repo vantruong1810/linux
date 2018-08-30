@@ -51,7 +51,7 @@ sudo vi elasticsearch.yml
 Uncomment and change below rows: 
 ```
 bootstrap.memory_lock: true #This disables memory swapping for Elasticsearch. (*)
-network.host: localhost
+network.host: localhost # 0.0.0.0 to login by both IP Adress
 http.port: 9200
 ```
 #### Now edit the elasticsearch.service file for the memory lock configuration [Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/setting-system-settings.html#systemd "Reference"). (*)
@@ -82,7 +82,10 @@ netstat -plntu # Make sure 'state' for port 9200 is 'LISTEN'.
 curl -XGET 'localhost:9200/_nodes?filter_path=**.mlockall&pretty' # Check: mlockall = true
 curl -XGET 'localhost:9200/?pretty' # Check "tagline" : "You Know, for Search"
 ```
-NOTE: (*): https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-configuration-memory.html
+*NOTE:* (*): https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-configuration-memory.html
+If can't access from outside to port `9200`, please run `firewall-cmd --list-all`
+
+Do you see port `9200/tcp` listed? If not, can you run `firewall-cmd --permanent --add-port=9200/tcp` and `firewall-cmd --reload` and check again? 
 ## 4. Install and configure Kibana
 ### Intstall Kibana on another server [Optional]
 Add the elastic.co key to the server.
@@ -111,6 +114,12 @@ sudo systemctl daemon-reload
 sudo systemctl enable kibana.service
 sudo systemctl start kibana.service
 ```
+*Note:*
+
+If can't access from outside to port `5601`, please run `firewall-cmd --list-all`
+
+Do you see port `5601/tcp` listed? If not, can you run `firewall-cmd --permanent --add-port=5601/tcp` and `firewall-cmd --reload` and check again? 
+
 ## 5. Install and configure Logstash
 ### Install Java 8 on another server [Here](https://github.com/vantruong1810/linux/blob/master/elk.md#install-java-8 "Install Java 8") [Optional]
 ### Intstall Logstash on another server [Optional]
@@ -202,4 +211,31 @@ Start logstash
 sudo systemctl daemon-reload
 sudo systemctl enable logstash.service
 sudo systemctl start logstash.service
+```
+*Note:*
+
+If can't access from outside to port `5443`, please run `firewall-cmd --list-all`
+
+Do you see port `5443/tcp` listed? If not, can you run `firewall-cmd --permanent --add-port=5443/tcp` and `firewall-cmd --reload` and check again? 
+
+## 6. Install filebeat on ubuntu
+### Make directory
+```
+sudo mkdir -p /etc/pki/tls/certs/
+```
+Copy `/etc/pki/tls/certs/logstash-forwarder.crt` from logstash server to `/etc/pki/tls/certs/logstash-forwarder.crt`
+### Add the elastic key to the server.
+```
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+```
+### Install filebeat
+Access this link to get lastest version: https://www.elastic.co/downloads/beats/filebeat
+```
+wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.4.0-amd64.deb
+sudo dpkg -i filebeat-6.4.0-amd64.deb
+```
+### Configure filebeat
+```
+cd /etc/filebeat/
+sudo vim filebeat.yml
 ```
