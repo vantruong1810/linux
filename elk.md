@@ -144,12 +144,19 @@ Find the `[ v3_ca ]` section in the file and add
 [ v3_ca ]
 
 # Server IP Address
-subjectAltName = IP: xx.xx.xx.xx # ELK_server_private_IP
+subjectAltName = IP: xx.xx.xx.xx # Logstash_server_IP
 ```
 Generate the certificate file with the openssl command.
 ```
 sudo openssl req -config /etc/pki/tls/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout /etc/pki/tls/private/logstash-forwarder.key -out /etc/pki/tls/certs/logstash-forwarder.crt
 ```
+_For test_
+Copy `/etc/logstash/logstash_example.conf` to `/etc/logstash/logstash.conf`
+```
+/usr/share/logstash/bin/logstash --path.settings=/etc/logstash -f /etc/logstash/logstash.conf --config.test_and_exit
+/usr/share/logstash/bin/logstash --path.settings=/etc/logstash -f /etc/logstash/logstash.conf --config.reload.automatic
+```
+
 The certificate files can be found in the `/etc/pki/tls/certs/` and `/etc/pki/tls/private/` directories.
 ### Create logstash configuration files
 _Filebeat_
@@ -224,6 +231,11 @@ Do you see port `5443/tcp` listed? If not, can you run `firewall-cmd --permanent
 sudo mkdir -p /etc/pki/tls/certs/
 ```
 Copy `/etc/pki/tls/certs/logstash-forwarder.crt` from logstash server to `/etc/pki/tls/certs/logstash-forwarder.crt`
+
+OR run below command and type password for `root` user
+```
+scp root@logstash-serverIP:/etc/pki/tls/certs/logstash-forwarder.crt /etc/pki/tls/certs/logstash-forwarder.crt
+```
 ### Add the elastic key to the server.
 ```
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
@@ -238,4 +250,29 @@ sudo dpkg -i filebeat-6.4.0-amd64.deb
 ```
 cd /etc/filebeat/
 sudo vim filebeat.yml
+```
+Change something like as this one:
+```
+output.logstash:
+  hosts: ["logstashServerIP:5443"]
+  ssl.certificate_authorities: ["/etc/pki/tls/certs/logstash-forwarder.crt"]
+# Change to true to enable this input configuration.
+  enabled: true
+# Paths that should be crawled and fetched. Glob based paths.
+  paths:
+    - /var/log/nginx/*.log
+    - /var/log/mysql/*.log
+```
+
+Check filebeat configuration:
+```
+sudo filebeat -h # Help
+sudo [command] --help # More detail for command
+sudo filebeat test config # Check config
+sudo filebeat test output # Check output
+```
+_For test_
+```
+cd /usr/share/filebeat/bin
+./filebeat -e -c /etc/filebeat/filebeat.yml -d "publish"
 ```
