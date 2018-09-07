@@ -23,6 +23,7 @@ sudo npm install bower gulp sails -g
 
 ## Install Konga
 ```
+cd /var/www/html # Optional
 git clone https://github.com/pantsel/konga.git
 cd konga
 npm install
@@ -35,11 +36,11 @@ vim local.js
 
 npm start # Run background `npm start --prod &`
 ```
-Konga GUI will be available at `http://localhost:1337`
+Konga GUI will be available at `http://localhost:1337` or `http://localhost:1338` 
 
 # Login
 Admin: `admin` | `adminadminadmin`
 Demo: `demo` | `demodemodemo`
 
 # Note:
-Please change CONNECTIONS > default: `http://kong:8001` to `http://localhost:8001`
+Please change CONNECTIONS > default: `http://kong:8001` to `http://KongServerIP:8001` or `http://localhost:8001` (same server)
