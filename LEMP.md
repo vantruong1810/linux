@@ -4,31 +4,33 @@ apt-get update
 ```
 
 ## Nginx
+- Install
 ```bash
 apt-get install nginx -y
 ```
+
 ## Mysql
+- Install
 ```bash
 apt-get install mysql-server
 mysql -u root -p{your_password}
 ```
-### Create new user Mysql
+- Create new user Mysql
 ```mysql
 CREATE USER '<user_name>'@'%' IDENTIFIED BY '<password>';
 GRANT ALL PRIVILEGES ON *.* TO '<user_name>'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
-### Note for issue not connect from client to server
-#### Run command
+- Note for issue not connect from client to server
 ```bash
 vi /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
-#### Change config
 ```yaml
 bind_address = 0.0.0.0
 ```
 
 ## PHP
+- Install
 ```bash
 add-apt-repository ppa:ondrej/php
 apt-get install software-properties-common
@@ -36,25 +38,23 @@ apt-get install python-software-properties -y
 apt-get update
 apt-get -y install php7.2 php7.2-mysql php7.2-fpm
 ```
-### PHP package optional
+- PHP package optional
 ```bash
 apt-get -y install php7.2-mbstring php7.2-xml php7.2-curl php7.0-soap php7.2-common php7.2-cli
 ```
-### Config PHP
+- Config PHP
 ```bash
 vi /etc/php/7.2/fpm/php.ini
 ```
-#### Config PHP  like this
-```bash
+```yaml
 cgi.fix_pathinfo=0
 upload_max_filesize = 128M
 post_max_size = 128M
 ```
-### Config NGINX accept PHP
+- Config NGINX accept PHP
 ```bash
 vi /etc/nginx/sites-available/default
 ```
-#### Config NGINX  like this
 ```yaml
 server {
     listen 80 default_server;
@@ -79,12 +79,16 @@ server {
     }
 }
 ```
+
 ## Zip and Unzip
+- Install
 ```bash
 apt-get install zip
 apt-get install unzip
 ```
+
 ## Composer
+- Install last version
 ```bash
 sudo curl -s https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
