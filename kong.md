@@ -7,7 +7,7 @@ wget -O kong-community-edition-0.14.1.xenial.all.deb https://bintray.com/kong/ko
 # Install PostgreSQL 10 (required v9.5+)
 Link reference: https://www.postgresql.org/download/linux/ubuntu/
 
-Create the file /etc/apt/sources.list.d/pgdg.list and add a line for the repository
+Create the file `/etc/apt/sources.list.d/pgdg.list` and add a line for the repository
 ```
 deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
 ```
@@ -30,9 +30,10 @@ sudo dpkg -i kong-community-edition-0.14.1.xenial.all.deb
 ## Create DB
 
 ```
-CREATE USER kong; CREATE DATABASE kong OWNER kong;
 sudo -u postgres psql
+CREATE USER kong; CREATE DATABASE kong OWNER kong;
 ALTER USER kong WITH PASSWORD 'password'; #change password for kong user
+\q
 ```
 
 ## Configuration
