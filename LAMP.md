@@ -1,7 +1,7 @@
 # Agenda
-* [Apache 2.4](#apache)
-* [PHP 7.2](#php)
-* [MySQL 8.0](#mysql)
+* [Apache 2.4](##apache-24)
+* [PHP 7.2](#php-72)
+* [MySQL 8.0](#mysql-80)
 ## Apache 2.4
 * Download link: https://www.apachelounge.com/download/
 
