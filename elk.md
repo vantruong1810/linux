@@ -261,7 +261,12 @@ output.logstash:
 # Paths that should be crawled and fetched. Glob based paths.
   paths:
     - /var/log/nginx/*.log
-    - /var/log/mysql/*.log
+    #- /var/log/mysql/*.log
+  fields:
+    app_id: app_id_1
+  tags: ["nginx"]
+  exclude_files: ['.gz$']
+  fields_under_root: true
 ```
 
 Check filebeat configuration:
