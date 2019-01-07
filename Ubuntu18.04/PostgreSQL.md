@@ -27,3 +27,19 @@ Close psql.
 ```
 \q
 ```
+## Additional info
+Connect database from `localhost`
+
+Change `/etc/postgresql/10/main/postgresql.conf` to
+```
+listen_addresses = '*'
+```
+Change `/etc/postgresql/10/main/pg_hba.conf` to
+```
+host    all             all             52.28.186.51/24      trust
+```
+
+Restart `PostgreSQL`
+```bash
+sudo systemctl restart postgresql
+```

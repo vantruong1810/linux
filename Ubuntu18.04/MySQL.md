@@ -10,7 +10,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'administrator'@'localhost' IDENTIFIED BY 'very_s
 ## Additional info
 Connect database from `localhost`
 
-Change
+Change `/etc/mysql/mysql.conf.d/mysqld.cnf`
 ```
 bind-address = 127.0.0.1
 ```
