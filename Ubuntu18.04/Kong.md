@@ -68,8 +68,38 @@ Error: cannot run migrations: database needs bootstrapping; run 'kong migrations
 ```
 ## Start Kong
 ```
-kong start [-c /etc/kong/kong.conf] # Actions: start/stop/reload
+sudo kong start [-c /etc/kong/kong.conf] # Actions: start/stop/reload
 ```
+### Automatically start:
+Use `systemd` for Control kong service.
+
+First create kong.service file : `sudo vi /usr/lib/systemd/system/kong.service` and then put this lines in file :
+```yaml
+[Unit]
+Description= kong service
+After=syslog.target network.target
+
+
+[Service]
+User=root
+Group=root
+Type=forking
+ExecStart=/usr/local/bin/kong start
+ExecReload=/usr/local/bin/kong reload
+ExecStop=/usr/local/bin/kong stop
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Control kong by systemd :
+```bash
+sudo systemctl start kong
+sudo systemctl stop kong
+sudo systemctl enable kong
+```
+
+Note: Maybe only use `sudo` user to do (`sudo su`) 
 ## Check status
 ```
 curl -i http://localhost:8001/
