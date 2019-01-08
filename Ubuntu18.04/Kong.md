@@ -2,7 +2,7 @@
 Link reference: https://docs.konghq.com/install/ubuntu/
 # Download package
 ```
-wget -O kong-community-edition-0.14.1.bionic.all.deb https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-0.14.1.bionic.all.deb
+wget -O kong-community-edition-1.0.0.bionic.all.deb https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-1.0.0.bionic.all.deb
 ```
 # Install PostgreSQL 10 (required v9.5+)
 Link reference: https://www.postgresql.org/download/linux/ubuntu/
@@ -24,7 +24,7 @@ sudo apt-get install postgresql-10
 ## Install
 ```
 sudo apt-get update
-sudo apt-get install openssl libpcre3 procps perl
+sudo apt-get install openssl libpcre3 procps perl # Optional
 sudo dpkg -i kong-community-edition-0.14.1.bionic.all.deb
 ```
 ## Create DB
@@ -61,6 +61,10 @@ kong migrations up
 OR 
 ```
 kong migrations up -c /etc/kong/kong.conf
+```
+Note: 
+```yaml
+Error: cannot run migrations: database needs bootstrapping; run 'kong migrations bootstrap'
 ```
 ## Start Kong
 ```
