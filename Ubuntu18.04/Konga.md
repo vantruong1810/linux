@@ -13,6 +13,11 @@ Link reference:
 # Installation
 - Install `npm` and `node.js`. Instructions can be found [here](https://github.com/pandao/editor.md "Node").
 - Install `bower`, ad `gulp` packages.
+## Install NodeJS 10
+```
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo apt-get install -y nodejs`
+```
 
 ## Install NodeJS 8
 ```
