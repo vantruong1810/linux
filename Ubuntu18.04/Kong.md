@@ -25,7 +25,7 @@ sudo apt-get install postgresql-10
 ```
 sudo apt-get update
 sudo apt-get install openssl libpcre3 procps perl # Optional
-sudo dpkg -i kong-community-edition-0.14.1.bionic.all.deb
+sudo dpkg -i kong-community-edition-1.0.0.bionic.all.deb
 ```
 ## Create DB
 
