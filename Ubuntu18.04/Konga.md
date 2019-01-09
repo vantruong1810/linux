@@ -8,11 +8,10 @@ Link reference:
 - A running Kong installation [here](https://github.com/vantruong1810/linux/blob/master/kong.md "Kong installation")
 - Nodejs >= 8 (8.11.3 LTS is recommended)
 - Npm
-- bower, gulp
 
 # Installation
-- Install `npm` and `node.js`. Instructions can be found [here](https://github.com/pandao/editor.md "Node").
-- Install `bower`, ad `gulp` packages.
+- Install `npm` and `node.js`
+- Install `bower`, `gulp`, `sails` packages.
 ## Install NodeJS 10
 ```
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
@@ -29,23 +28,29 @@ sudo npm install bower gulp sails -g
 ## Install Konga
 ```
 cd /var/www/html # Optional
-git clone https://github.com/pantsel/konga.git
+git clone https://github.com/pantsel/konga.git konga
 cd konga
 npm install
 ```
-# Configuration
+# Run
 ```
-cd konga/config
-cp -pr local_example.js local.js
-vim local.js
-
 npm start # Run background `npm start --prod &`
 ```
-Konga GUI will be available at `http://localhost:1337` or `http://localhost:1338` 
+# Use `pm2`
+Install:
+```
+npm install pm2 -g
+```
+Run `pm2` on startup & background:
+```yaml
+pm2 startup
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
+cd konga
+pm2 run -n "App name"
+pm2 save
+```
 
-# Login
-Admin: `admin` | `adminadminadmin`
-Demo: `demo` | `demodemodemo`
+Konga GUI will be available at `http://localhost:1337` or `http://localhost:1338` 
 
 # Note:
 Please change CONNECTIONS > default: `http://kong:8001` to `http://KongServerIP:8001` or `http://localhost:8001` (same server)
