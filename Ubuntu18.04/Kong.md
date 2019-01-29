@@ -2,7 +2,7 @@
 Link reference: https://docs.konghq.com/install/ubuntu/
 # Download package
 ```
-wget -O kong-community-edition-1.0.0.bionic.all.deb https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-1.0.0.bionic.all.deb
+wget -O kong-community-edition-1.0.0.bionic.all.deb https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-1.0.2.bionic.all.deb
 ```
 # Install PostgreSQL 10 (required v9.5+)
 Link reference: https://www.postgresql.org/download/linux/ubuntu/
