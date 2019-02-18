@@ -2,7 +2,7 @@
 Link reference: https://docs.konghq.com/install/ubuntu/
 # Download package
 ```
-wget -O kong-community-edition-1.0.2.bionic.all.deb https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-1.0.2.bionic.all.deb
+wget -O kong-community-edition-1.0.3.bionic.all.deb https://bintray.com/kong/kong-community-edition-deb/download_file?file_path=dists/kong-community-edition-1.0.3.bionic.all.deb
 ```
 # Install PostgreSQL 10 (required v9.5+)
 Link reference: https://www.postgresql.org/download/linux/ubuntu/
@@ -25,7 +25,7 @@ sudo apt-get install postgresql-10
 ```
 sudo apt-get update
 sudo apt-get install openssl libpcre3 procps perl # Optional
-sudo dpkg -i kong-community-edition-1.0.2.bionic.all.deb
+sudo dpkg -i kong-community-edition-1.0.3.bionic.all.deb
 ```
 ## Create DB
 
