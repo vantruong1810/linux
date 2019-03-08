@@ -15,7 +15,7 @@ Link reference:
 ## Install NodeJS 10
 ```
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
-sudo apt-get install -y nodejs`
+sudo apt-get install -y nodejs
 ```
 
 ## Install NodeJS 8
