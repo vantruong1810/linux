@@ -27,7 +27,7 @@ sudo npm install bower gulp sails -g
 
 ## Install Konga
 ```
-cd /var/www/html # Optional
+cd /home/ubuntu # Optional
 git clone https://github.com/pantsel/konga.git konga
 cd konga
 npm install
